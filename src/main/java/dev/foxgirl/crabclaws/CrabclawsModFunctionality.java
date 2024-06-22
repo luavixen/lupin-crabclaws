@@ -27,15 +27,15 @@ public class CrabclawsModFunctionality {
         if (attribute == null) return;
 
         if (
-                entity.getMainHandItem().getItem() == CrabclawsModItems.CRAB_CLAW.get() ||
-                        entity.getOffhandItem().getItem() == CrabclawsModItems.CRAB_CLAW.get()
+            entity.getMainHandItem().getItem() == CrabclawsModItems.CRAB_CLAW.get() ||
+            entity.getOffhandItem().getItem() == CrabclawsModItems.CRAB_CLAW.get()
         ) {
             if (!attribute.hasModifier(REACH_MODIFIER)) {
                 attribute.addTransientModifier(REACH_MODIFIER);
             }
         } else {
             if (attribute.hasModifier(REACH_MODIFIER)) {
-                attribute.removeModifier(REACH_MODIFIER);
+                attribute.removeModifier(REACH_MODIFIER.getId());
             }
         }
     }
