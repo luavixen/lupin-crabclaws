@@ -13,7 +13,8 @@ public class CrabclawsModTabs {
 
     public static final DeferredRegister<CreativeModeTab> REGISTRY;
 
-    public CrabclawsModTabs() {
+    static {
+        REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, "crabclaws");
     }
 
     @SubscribeEvent
@@ -21,10 +22,6 @@ public class CrabclawsModTabs {
         if (tabData.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             tabData.accept(CrabclawsModItems.CRAB_CLAW.get());
         }
-    }
-
-    static {
-        REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, "crabclaws");
     }
 
 }
