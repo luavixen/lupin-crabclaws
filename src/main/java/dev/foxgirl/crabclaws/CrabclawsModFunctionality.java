@@ -1,7 +1,7 @@
 package dev.foxgirl.crabclaws;
 
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraftforge.common.ForgeMod;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -13,7 +13,7 @@ public class CrabclawsModFunctionality {
 
     private static final AttributeModifier REACH_MODIFIER = new AttributeModifier(
             UUID.fromString("61df419d-4f62-4fee-a151-909344b439e7"),
-            "crabclaws_extra_reach", 3.0, AttributeModifier.Operation.ADDITION
+            "crabclaws_extra_reach", 3.0, AttributeModifier.Operation.ADD_VALUE
     );
 
     @SubscribeEvent
@@ -23,7 +23,7 @@ public class CrabclawsModFunctionality {
         var entity = event.player;
         if (entity == null) return;
 
-        var attribute = entity.getAttribute(ForgeMod.BLOCK_REACH.get());
+        var attribute = entity.getAttribute(Attributes.BLOCK_INTERACTION_RANGE);
         if (attribute == null) return;
 
         if (
@@ -35,7 +35,7 @@ public class CrabclawsModFunctionality {
             }
         } else {
             if (attribute.hasModifier(REACH_MODIFIER)) {
-                attribute.removeModifier(REACH_MODIFIER.getId());
+                attribute.removeModifier(REACH_MODIFIER.id());
             }
         }
     }
