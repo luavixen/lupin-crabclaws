@@ -18,6 +18,8 @@ public class CrabclawsMod {
 
     public static final Logger LOGGER = LogManager.getLogger();
 
+    public static final CrabclawsConfig CONFIG = CrabclawsConfig.loadConfig();
+
     public CrabclawsMod() {
         MinecraftForge.EVENT_BUS.register(this);
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -30,17 +32,19 @@ public class CrabclawsMod {
     private static final ResourceLocation UNDERWATER_RUIN_BIG = new ResourceLocation("minecraft:chests/underwater_ruin_big");
 
     public void onLootTableLoad(LootTableLoadEvent event) {
-        if (event.getName().equals(UNDERWATER_RUIN_SMALL) || event.getName().equals(UNDERWATER_RUIN_BIG)) {
-            event.getTable().addPool(
-                LootPool
-                    .lootPool()
-                    .name("crabclaws:crab_claw")
-                    .setRolls(ConstantValue.exactly(1.0F))
-                    .add(EmptyLootItem.emptyItem().setWeight(7))
-                    .add(LootItem.lootTableItem(CrabclawsModItems.CRAB_CLAW.get()).setWeight(1))
-                    .build()
-            );
-            LOGGER.info("Added crab claw loot pool to {}", event.getName());
+        if (CONFIG.shouldSpawnClawsInRuins) {
+            if (event.getName().equals(UNDERWATER_RUIN_SMALL) || event.getName().equals(UNDERWATER_RUIN_BIG)) {
+                event.getTable().addPool(
+                    LootPool
+                        .lootPool()
+                        .name("crabclaws:crab_claw")
+                        .setRolls(ConstantValue.exactly(1.0F))
+                        .add(EmptyLootItem.emptyItem().setWeight(CONFIG.probabilityOfClawsInRuins))
+                        .add(LootItem.lootTableItem(CrabclawsModItems.CRAB_CLAW.get()).setWeight(1))
+                        .build()
+                );
+                LOGGER.info("Added crab claw loot pool to {}", event.getName());
+            }
         }
     }
 
