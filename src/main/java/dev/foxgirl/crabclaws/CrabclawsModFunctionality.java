@@ -13,7 +13,7 @@ public class CrabclawsModFunctionality {
 
     private static final AttributeModifier REACH_MODIFIER = new AttributeModifier(
             UUID.fromString("61df419d-4f62-4fee-a151-909344b439e7"),
-            "crabclaws_extra_reach", 3.0, AttributeModifier.Operation.ADDITION
+            "crabclaws_extra_reach", CrabclawsMod.CONFIG.clawExtraReachAmount, AttributeModifier.Operation.ADDITION
     );
 
     @SubscribeEvent
