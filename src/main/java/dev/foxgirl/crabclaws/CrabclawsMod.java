@@ -28,8 +28,8 @@ public class CrabclawsMod {
         MinecraftForge.EVENT_BUS.addListener(this::onLootTableLoad);
     }
 
-    private static final ResourceLocation UNDERWATER_RUIN_SMALL = new ResourceLocation("minecraft:chests/underwater_ruin_small");
-    private static final ResourceLocation UNDERWATER_RUIN_BIG = new ResourceLocation("minecraft:chests/underwater_ruin_big");
+    private static final ResourceLocation UNDERWATER_RUIN_SMALL = ResourceLocation.parse("minecraft:chests/underwater_ruin_small");
+    private static final ResourceLocation UNDERWATER_RUIN_BIG = ResourceLocation.parse("minecraft:chests/underwater_ruin_big");
 
     public void onLootTableLoad(LootTableLoadEvent event) {
         if (CONFIG.shouldSpawnClawsInRuins) {
